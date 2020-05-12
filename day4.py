@@ -8,12 +8,17 @@ class TreeNode:
         self.left = left
         self.right = right
 
-class Solution:
+class Solution1:
     def invertTree(self, root: TreeNode) -> TreeNode:
         if root:
             tmp = root.right
             root.right = self.invertTree(root.left)
             root.left = self.invertTree(tmp)
             return root
-        else:
-            return root 
+
+
+class Solution2:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if root:
+            root.left, root.right = self.invertTree(root.left), self.invertTree(root.right)
+            return root
